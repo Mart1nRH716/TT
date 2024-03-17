@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 def user_login(request):
+    form = LoginForm(request.POST)
     if request.method == 'POST':
-        form = LoginForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(request, username=cd['username'], password=cd['password'])
@@ -19,4 +19,4 @@ def user_login(request):
                 return HttpResponse('Invalid login')
         else:
             form = LoginForm()
-        return render(request, 'account/login.html', {'form': form})
+    return render(request, 'cuenta/login.html', {'form': form})
