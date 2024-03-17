@@ -1,17 +1,48 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-        <link href="{% static "css/base.css" %}" rel="stylesheet">
-    </head>
-    <body>
-         <div id="header">
-            <span class="logo">TT Tinder</span>
-         </div>
-         <div id="content">
-            {% block content %}
-            {% endblock %}
-         </div>
-    </body>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <span class="logo">TT-Tinder</span>
+    {% if request.user.is_authenticated %}
+      <ul class="menu">
+        <li {% if section == "dashboard" %}class="selected"{% endif %}>
+          <a href="{% url "dashboard" %}">Panel de inicio</a>
+        </li>
+        <li {% if section == "chat" %}class="selected"{% endif %}>
+          <a href="#">Chat</a>
+        </li>
+      </ul>
+    {% endif %}
+    <span class="user">
+      {% if request.user.is_authenticated %}
+        Hola {{ request.user.first_name|default:request.user.username }},
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="styled-button">Cerrar Sesión</button>
+        </form>
+      {% else %}
+        <a href="{% url "login" %}">Iniciar Sesión</a>
+      {% endif %}
+    </span>
+  </div>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">x</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
 </html>
