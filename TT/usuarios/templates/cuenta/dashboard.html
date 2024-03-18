@@ -3,6 +3,7 @@
 {% block content %}
  <h1>Panel de inicio</h1>
  <p>Bienvido al panel de incio.</p>
- <p>asdasdfhasdjfhaskjdmxcb,zmcb,zmxbvasjdvjkads asdasdfhasdjfhaskjdmxcb,zmcb,zmxbvasjdvjkads asdasdfhasdjfhaskjdmxcb,zmcb,zmxbvasjdvjkads
- </p>
+ <p>
+  Puedes <a href="{% url "edit_alumno" %}"> cambiar tu informacion</a> o <a href="{% url "password_change" %}">acambiar tu contraseña</a>
+  </p>
 {% endblock %}
