@@ -9,6 +9,8 @@
       </p>
     {% else %}
       <p>Usa el siguiente formulario para entrar al sistema:</p>
+      <p>Si no tienes una cuenta, puedes <a href="{% url "register" %}">Crear una aqui</a>.</p>
+
     {% endif %}
   <div class="login-form">
     <form action="{% url 'login' %}" method="post">
@@ -18,6 +20,7 @@
       <p><input type="submit" value="Entrar"></p>
     </form>
     <p>
+
       <a href="{% url "password_reset" %}">
           Olvidaste tu contraseña?
       </a>
