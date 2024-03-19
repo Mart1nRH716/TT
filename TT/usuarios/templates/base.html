@@ -3,9 +3,11 @@
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <link href="{% static "css/base.css" %}" rel="stylesheet">
+<!--  <link href="{% static "css/base.css" %}" rel="stylesheet">-->
+  <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
 </head>
 <body>
+<br>
   <div id="header">
     <span class="logo">TT-Tinder</span>
     {% if request.user.is_authenticated %}
@@ -30,19 +32,15 @@
       {% endif %}
     </span>
   </div>
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li class="{{ message.tags }}">
-          {{ message|safe }}
-          <a href="#" class="close">x</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
+
+<div>
+  <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+</div>
+
 </body>
 </html>
